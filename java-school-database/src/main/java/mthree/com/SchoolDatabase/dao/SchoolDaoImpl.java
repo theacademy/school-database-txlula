@@ -74,10 +74,7 @@ public class SchoolDaoImpl implements SchoolDao {
         // Name the aggregate field `numStudents`.
         // YOUR CODE STARTS HERE
 
-        String sql = "SELECT courseCode, courseDesc, COUNT(student_id) studentCount\n" +
-                "FROM course c\n" +
-                "INNER JOIN course_student cs ON c.cid = cs.course_id\n" +
-                "GROUP BY courseCode, courseDesc;";
+        String sql = "SELECT courseCode, courseDesc, COUNT(student_id) numStudents FROM course c INNER JOIN course_student cs ON c.cid = cs.course_id GROUP BY courseCode, courseDesc;";
 
         // YOUR CODE ENDS HERE
         return jdbcTemplate.query(sql, new StudentCountMapper());
@@ -91,7 +88,7 @@ public class SchoolDaoImpl implements SchoolDao {
         // Need to add in the sid for Robert Dylan.  Use sid: 123
         // YOUR CODE STARTS HERE
 
-        String sql = "";
+        String sql = "INSERT INTO student VALUES (123, 'Robert', 'Dylan');";
 
         // YOUR CODE ENDS HERE
          System.out.println(jdbcTemplate.update(sql));
@@ -104,8 +101,7 @@ public class SchoolDaoImpl implements SchoolDao {
         // You will need to include a sid in your query.  Use 123
         // YOUR CODE STARTS HERE
 
-        String sql = "INSERT INTO student VALUES (123, 'Robert', 'Dylan');\n" +
-                "INSERT INTO course_student VALUES (123, 1);";
+        String sql = "INSERT INTO course_student VALUES (123, 1);";
 
         // YOUR CODE ENDS HERE
         jdbcTemplate.update(sql);
